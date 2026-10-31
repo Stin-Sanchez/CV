@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de proyectos</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body >
+
+      <header class="header">
+        <img src="uploads/foto.png" alt="Foto de Stin Josue Sanchez M" class="perfil">
+        <div>
+            <h1>Stin Josue Sanchez M</h1>
+            <p>Perfil académico y profesional</p>
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="habilidades.html">Habilidades</a>
+        <a href="estudios.html">Estudios</a>
+        <a href="experiencia.html">Experiencia Laboral</a>
+        <a href="cursos.html">Cursos y Certificaciones</a>
+        <a href="referencias.html">Referencias</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="portafolio.html">Portafolio</a>
+    </nav>
+
+ 
+
+    <p>Estudiante de Ingeniería de software con experiencia en desarrollo backend. Me interesa construir aplicaciones web robustas, automatizar despliegues y seguir aprendiendo nuevas tecnologías.</p>
+    <p>Busco seguir creciendo profesionalmente en un equipo donde pueda aportar con mis conocimientos y aprender de otros.</p>
+
+
+<h2>Portafolio de proyectos personales y profesionales</h2>
+    
+        <h3>Tracking Task</h3>
+        <h4>Tecnologías: C# .NET 8, ASP.NET Core, SQL Server, Redis, ClosedXML, Arquitectura Hexagonal </h4>
+            <ol>
+                <li>Sistema de seguimiento de tiempo y tareas integrado con la API de OpenProject, con arquitectura hexagonal
+                (Ports & Adapters) en 4 capas (Domain, Application, Infrastructure, Web).</li>
+                <li> Rol principal: diseño y desarrollo de un asistente conversacional (bot) que gestiona tareas por lenguaje natural,
+                    integrando un LLM (Groq) con tool calling nativo para crear, iniciar, pausar y finalizar tareas directamente
+                    contra la API de OpenProject.</li>
+                <li>Contexto conversacional persistido en Redis con manejo resiliente de fallos, y módulo de generación de reportes
+                    en Excel con historial de horas trabajadas por tarea y día.</li>
+                
+            </ol>
+        
+        <h3>BarberShop Nexus</h3>
+    <h4>Tecnologías: Java 17, Spring Boot 3.5, PostgreSQL, Flyway, Redis, React 19, TypeScript, Vite, Docker, GitLab CI/CD </h4>
+    <ol>
+        <li>Plataforma SaaS multi-barbería (multi-tenant con esquema compartido y <code>tenant_id</code>) para gestión de turnos:
+        landing pública por barbería (<code>/{slug}</code>), reserva en línea con horario real, cancelación por enlace y panel
+        de administración. Backend y frontend se empaquetan en un único jar desplegado con Docker.</li>
+        <li>Rol principal: diseño y desarrollo del aislamiento entre barberías (filtro de tenant por sesión o slug, guardas por
+            entidad y migraciones versionadas con Flyway) y de la parametrización de contenido por cliente: perfil, textos,
+            galería de fotos, color del tema, horario semanal con días cerrados y alta de barberías nuevas.</li>
+        <li>Autenticación dual (JWT propio y OIDC con Keycloak) con sesiones opacas en Redis, almacenamiento de imágenes detrás
+            de un puerto con adaptadores local y S3/MinIO, y notificaciones por WhatsApp (n8n + Evolution). Pruebas unitarias
+            con JUnit y Mockito, y pipeline CI/CD con despliegue automático por SSH a un VPS.</li>
+        <li>Rediseño UX del panel guiado por heurísticas de Nielsen (separación por pestañas, accesibilidad con
+            <code>aria-live</code>, mensajes de error accionables).</li>
+    </ol>
+
+    <h3>Gestor de Ingresos y Egresos (API web)</h3>
+<h4>Tecnologías: C# ASP.NET Core 9 (minimal API), MySQL, ADO.NET, BCrypt, TOTP (2FA), JavaScript, Bootstrap 5, Chart.js, Docker </h4>
+    <ol>
+        <li>Migración a web de una aplicación de finanzas personales de escritorio (WinForms): API REST con minimal API
+        en capas (Services y Repository con ADO.NET sin ORM) y frontend en JavaScript con Bootstrap 5 y Chart.js,
+        desplegado en un homelab con Docker Compose (API + MySQL) y HTTPS vía Tailscale.</li>
+        <li>Rol principal: diseño y desarrollo de la API: periodos mensuales con ciclo de vida (cierre y reapertura),
+            ingresos y gastos, presupuestos por "sobres" con consumos y umbrales de bloqueo, y deudas en dos
+            direcciones (debo / me deben) con abonos y ampliaciones registrados de forma transaccional.</li>
+        <li>Aislamiento de datos por usuario en todas las consultas, autenticación con cookie de sesión HttpOnly, migración
+            transparente de hashes SHA-256 a BCrypt, segundo factor TOTP con código QR y login en dos pasos, y
+            migraciones SQL versionadas. Reglas de negocio verificadas con un self-check (<code>--selftest</code>).</li>
+    </ol>
+
+<h3>AccesControl (PortalGuard)</h3>
+<h4>Tecnologías: Java 25, Spring Boot 4, PostgreSQL, Flyway, Spring Session, Angular 20, PrimeNG, Docker, GitLab CI/CD </h4>
+    <ol>
+        <li>SaaS multi-tenant para el control de visitantes en urbanizaciones, donde el cliente es la empresa de seguridad.
+        Monolito modular por features (Spring Modulith, verificado con pruebas de arquitectura) con API REST documentada con
+        OpenAPI y errores en formato ProblemDetail (RFC 9457).</li>
+        <li>Rol principal: arquitectura y especificación del producto: ADRs y specs por fase, aislamiento entre empresas con
+            alcance explícito por <code>empresa_id</code> más Row-Level Security de PostgreSQL como segunda capa, y
+            migraciones con Flyway. Funciones como turnos de garita, carga masiva desde Excel, reportes y planificación por fechas.</li>
+        <li>Seguridad: sesiones con Spring Session JDBC y CSRF, 2FA con recuperación y recordar dispositivo, auditoría de
+            seguridad del MVP y verificaciones automáticas de despliegue. Actualizaciones en tiempo real a la garita con
+            Server-Sent Events.</li>
+        <li>Pruebas con JUnit 5, Testcontainers (PostgreSQL real) y pruebas de integración bajo RLS. Despliegue en un VPS con
+            Caddy como proxy, Docker Compose y pipeline CI/CD en GitLab.</li>
+    </ol>
+
+</body>
+</html>
